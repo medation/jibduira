@@ -64,13 +64,12 @@ public class MonumentControllerRest {
 	public Monument addMonument(@PathVariable String id){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByUsernameOrEmail(auth.getName());
-
 		Monument monument = tourismService.findMonumentById(Integer.parseInt(id));
-		user.addMonument(monument);
-		userService.save(user);
-
+		if(!user.containsMonument(monument)){
+			user.addMonument(monument);
+			userService.save(user);
+		}
 		System.out.println(auth.getName());
-
 		return monument;
 	}
 

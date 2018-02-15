@@ -1,12 +1,16 @@
-<ion-content padding class="no-scroll card-background-page" >
-  
-  <ion-fab right bottom>
-    <button ion-fab (click)="logout()">
-      <ion-icon name="log-out"></ion-icon>
-    </button>
-  </ion-fab>
-  
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        Se déconnecter <ion-icon name="exit"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
 
+<ion-content padding class="no-scroll card-background-page" >
+
+  
   <div class="title">JibDuira</div>
 
   <ion-card >
@@ -18,6 +22,6 @@
     </ion-card-content>
   </ion-card>
 
-  <button ion-button full (click)="goToApplication()"> Entrer </button>
+  <button ion-button outline round large full (click)="goToApplication()"> Entrer </button>
 
 </ion-content>

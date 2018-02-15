@@ -43,7 +43,7 @@ export class Signup {
   private showSuccesToast(jwt) {
     if (jwt !== 'EXISTS') {
       const toast = this.toastCtrl.create({
-        message: 'Sign up successful',
+        message: 'Vous avez bien été connécté',
         duration: 3000,
         position: 'bottom'
       });
@@ -52,7 +52,7 @@ export class Signup {
     }
     else {
       const toast = this.toastCtrl.create({
-        message: 'Username already registered',
+        message: 'Ce nom d\'utilisateur existe déja',
         duration: 3000,
         position: 'bottom'
       });
@@ -64,7 +64,7 @@ export class Signup {
   }
 
   handleError(error: any) {
-    let message = `Unexpected error occurred`;
+    let message = `Une erreur est survenue`;
 
     const toast = this.toastCtrl.create({
       message,

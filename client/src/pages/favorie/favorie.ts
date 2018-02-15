@@ -28,7 +28,7 @@ export class Favorie {
               private httpClient: HttpClient,
               private monumentService : MonumentService) {
     
-
+                
   }
 
   ionViewDidLoad() {   
@@ -50,6 +50,18 @@ export class Favorie {
             },1000); 
 
         });        
+  }
+
+  doRefresh(refresher) {
+    
+        this.monumentService.getFavories().subscribe(data => {
+          this.monuments = data;
+        })
+
+        setTimeout(() => {
+          refresher.complete();
+        }, 500);
+
   }
 
 

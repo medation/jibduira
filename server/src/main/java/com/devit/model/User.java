@@ -173,6 +173,14 @@ public class User {
 		this.monuments.add(monument);
 	}
 
+	public void addCircuit(Circuit circuit){
+		this.circuits.add(circuit);
+	}
+
+	public boolean containsMonument(Monument monument){
+		return monuments.contains(monument);
+	}
+
 	public boolean hasRole(String roleName) {
 		
 		for(Role role : this.roles) {

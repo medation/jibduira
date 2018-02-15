@@ -49,7 +49,9 @@ public class Circuit {
     @JoinColumn(name = "region_id")
 	private Region region;
 
-	
+	public Circuit(String name) {
+		this.name = name;
+	}
 
 	public Circuit(int id, String name, String description, List<Monument> monuments, User user, Region region) {
 		super();

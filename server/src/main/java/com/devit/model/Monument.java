@@ -75,16 +75,16 @@ public class Monument {
 
 //	@Column(name = "title")
 //	private String title;
-//	
+//
 //	@Column(name = "subtitle")
 //	private String subtitle;
-//	
+//
 //	@Column(name = "paragraphes")
 //	private List<String> paragraphes;
 
-	
 
-	
+
+
 	public Monument(String name, String description, double latitude, double longitude, String urlToImage) {
 		super();
 		this.name = name;
@@ -194,5 +194,5 @@ public class Monument {
 	public void setRegion(Region region) {
 		this.region = region;
 	}
-		
+
 }

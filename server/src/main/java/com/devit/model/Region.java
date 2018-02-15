@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "region")
-public class e Region {
+public class Region {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

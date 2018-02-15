@@ -1,7 +1,7 @@
 <ion-header>
     <ion-navbar color="primary">
       <ion-title>
-        Mes favories
+        Mes Circuits
       </ion-title>
       <ion-buttons end>
         <button ion-button icon-only (click)="logout()">
@@ -18,19 +18,19 @@
       <ion-refresher-content></ion-refresher-content>
       
     </ion-refresher>
-  
+
+    <button ion-button outline round large full (click)="addCircuit()"> Ajouter un circuit </button>
+
     <ion-list>
-      <ion-item *ngFor="let monument of monuments" >
+      <ion-item  >
         <ion-thumbnail item-start>
-          <img [src]="monument.urlToImage"/>
+          <img [src]=""/>
         </ion-thumbnail>
-        <h2>{{ monument.name }}</h2>
-        <p>Ville : {{ monument.city.name }} </p>
-        <p>Region : {{ monument.region.name }} </p>
-        <button ion-button clear item-end (click)="goToMonument(monument)">Voir</button>
+        <h2></h2>
+        <p></p>
+        <button ion-button clear item-end >Voir</button>
       </ion-item>
     </ion-list>
 
 
   </ion-content>
-  

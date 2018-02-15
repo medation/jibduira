@@ -39,7 +39,7 @@ export class Login {
   handleError(error: any) {
     let message: string;
     if (error.status && error.status === 401) {
-      message = 'Login failed';
+      message = 'Une erreur est survenue';
     }
     else {
       message = `Unexpected error: ${error.statusText}`;
