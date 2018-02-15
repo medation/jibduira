@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Information
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="exit"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="no-scroll card-background-page" >
+
+  <ion-fab bottom left>
+    <button ion-fab color="secondary" ><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-button full (click)="addMonumentFavorie()" color="secondary">Ajouter ce monument au favorie</button>
+      <button ion-button full (click)="addMonumentFavorie()" color="secondary">Ajouter ce monument à un circuit</button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <ion-card>
+    <img [src]="monument.urlToImage"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{ monument.name }}
+      </ion-card-title>
+      <p> {{ monument.description }} </p>
+    </ion-card-content>
+  </ion-card>
+
+  
+
+</ion-content>

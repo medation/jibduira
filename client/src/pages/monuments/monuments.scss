@@ -1,0 +1,45 @@
+page-monuments {
+    
+    .no-scroll {
+        .scroll-content:not(.show-scrollbar) {
+            margin-right: -17px;
+            overflow-y: scroll;
+        }
+    }
+    
+    .content{
+        background-color: color($colors, secondary);   
+    }
+    
+    .padding-top{
+        padding-top : 30px;
+    }
+
+    .card{
+        margin: 0px;
+        margin-bottom: 10px; 
+        width: 100%;
+        padding: 0px;
+        position: relative;
+        text-align: center;
+    }
+
+
+    .card-title {
+        position: absolute;
+        top: 36%;
+        font-size: 2.0em;
+        width: 100%;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .item{
+        background-color: color($colors, secondary);
+    }
+
+    .itemSearch{
+        background-color: color($colors, secondary);
+    }
+    
+}

@@ -1,0 +1,7 @@
+app:
+  secret: the_secret
+  token-validity-in-seconds: 2592000
+
+security:
+  ignored:
+    - none

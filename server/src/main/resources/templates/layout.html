@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+   <head th:layout="head"> 
+      	<meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	    <meta name="description" content="" />
+	    <meta name="author" content="" />
+	    <!--[if IE]>
+	        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	        <![endif]-->
+	    <title>JibDuira - web application</title>
+	    
+	    <!-- BOOTSTRAP CORE STYLE  -->
+	    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet" />
+	    <!-- FONT STYLE  -->
+	    <link th:href="@{font-awesome/css/font-awesome.min.css}" rel="stylesheet" />
+	    <link th:href="@{css/animate.css}" rel="stylesheet" />
+	    <!-- CUSTOM STYLE  -->
+	    <link th:href="@{css/style.css}" rel="stylesheet" />
+	    <link th:href="@{color/default.css}" rel="stylesheet" />
+	    
+	</head>
+	
+	<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+	
+		<!-- Preloader -->
+		<div id="preloader">
+		  <div id="load"></div>
+		</div>
+	
+	    <nav th:layout="nav" class="navbar navbar-custom navbar-fixed-top" role="navigation">
+	        <div class="container">
+	            <div class="navbar-header page-scroll">
+	                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+	                    <i class="fa fa-bars"></i>
+	                </button>
+	                <a class="navbar-brand" href="/index">
+	                    <h1>JibDuira</h1>
+	                </a>
+	            </div>
+	
+	            <!-- Collect the nav links, forms, and other content for toggling -->
+	            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+			      <ul class="nav navbar-nav">
+			        <li><a href="/">Accueil</a></li>
+			        <li><a href="/monuments">Monuments</a></li>
+					<li><a href="/index#circuit">Circuits</a></li>
+					<li><a sec:authorize="!isAuthenticated()" href="/login" >Se connecter</a></li>
+					<li><a sec:authorize="!isAuthenticated()" href="/registration">S'enregistrer</a></li>
+			        <li class="dropdown" sec:authorize="isAuthenticated()">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon espace<b class="caret"></b></a>
+			          <ul class="dropdown-menu">
+			            <li><a href="/addMonument">Ajouter un monument historique</a></li>
+			            <li><a href="/addCircuit">Ajouter un circuit touristique</a></li>
+			            <li><a sec:authorize="hasAuthority('ADMIN')" href="/listMonuments">Gérer les monuments</a></li>
+			            <li><a href="/logout">Se déconnecter</a></li>
+			          </ul>
+			        </li>
+			      </ul>
+	            </div>
+            <!-- /.navbar-collapse -->
+	        </div>
+	        <!-- /.container -->
+	    </nav>
+  
+      	
+      	<!-- Core JavaScript Files -->
+      	<script th:src="@{js/jquery.min.js}"></script>
+      	<script th:src="@{js/bootstrap.min.js}"></script>
+      	<script th:src="@{js/jquery.easing.min.js}"></script>
+      	<script th:src="@{js/jquery.scrollTo.js}"></script>
+      	<script th:src="@{js/wow.min.js}"></script>
+      	<!-- Custom Theme JavaScript -->
+      	<script th:src="@{js/custom.js}"></script>
+      	
+      </body>
+      
+ </html>

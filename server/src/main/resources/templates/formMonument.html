@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="layout :: head"></head>
+
+<body>
+
+	<!-- Preloader -->
+	<div id="preloader">
+	  <div id="load"></div>
+	</div>
+	
+	<!-- TOP NAV -->  
+	<nav th:replace="layout :: nav"></nav>
+	
+	
+	<!-- Section: contact -->
+    <section id="contact" class="home-section text-center">
+		<div class="heading-contact">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.2s">
+					<div class="section-heading">
+					<h2>Ajouter votre monument :)</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+						<p>Non, merci <a href="/circuit">j'aimerais tracer mon circuit</a></p>
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="container">
+
+			<div class="row">
+				<div class="col-lg-2 col-lg-offset-5">
+					<hr class="marginbot-50">
+				</div>
+			</div>
+		    <div class="row">
+		        <div class="col-lg-10 col-lg-offset-1">
+		            <div class="">
+		                <form id="contact-form" th:action="@{/addMonument}" th:object="${monument}" method="post" role="form" autocomplete="off">
+			                <div class="row">
+		                           	<a th:text="${successMessage}" class="successform" ></a>
+				                    <div class="col-md-8 col-md-offset-2">
+				                        <div class="form-group">
+				                            <label for="name"> Nom du monument ou du lieu</label>
+				                            <label for="name" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="errorform"></label>
+				                            <input type="text" name="name" th:field="*{name}" class="form-control" id="name" placeholder="Entrez le nom du monument" required=""></input>
+				                        </div>
+				                        <div class="form-group">
+				                            <label for="description"> Description</label>
+				                            <textarea name="description" id="description" class="form-control" rows="10" cols="25" required=""
+				                                placeholder="Une petite description sur ce monument"></textarea>
+				                        </div>
+				                    </div>
+				                    <div class="col-md-4 col-md-offset-2">    
+                           				<div class="form-group">
+	                           				<label for="latitude"> La latitude de ce monument</label>
+	                           				<label th:errors="*{latitude}" class="validation-message"></label>
+	                           				<input name="latitude" type="text" th:field="*{latitude}" class="form-control" id="latitude" placeholder="Latitude" required=""></input>
+                           				</div>
+                           				
+                           				<div class="form-group">
+                           					<label for="longitude">La longitude de ce monument</label>
+                           					<label th:errors="*{longitude}" class="validation-message"></label>
+                           					<input name="longitude" type="text" th:field="*{longitude}" class="form-control" id="longitude" placeholder="longitude" required=""></input>
+                           				</div>
+                           			</div>
+				                    <div class="col-md-8 col-md-offset-2"> 	
+                           				<div class="form-group">
+                           				<label for="urlToImage">L'url de l'image de ce monument (ext .jpg / .png)</label>
+                           					<label th:errors="*{urlToImage}" class="validation-message"></label>
+                             				<input name="urlToImage" type="text" th:field="*{urlToImage}" class="form-control" id="urlToImage" placeholder="Url de l'image" required=""></input>
+                           				</div>
+                           			
+				                    <button type="submit" class="btn btn-skin pull-right" value="Registration" name="submit" id="btnContactUs">
+				                            Enregistrer </button>
+				                    </div>
+			                </div>
+		                </form>
+		            </div>
+		        </div>
+		    </div>	
+
+		</div>
+	</section>
+	<!-- /Section: contact -->
+	
+	<!-- Core JavaScript Files -->
+   	<script th:src="@{js/jquery.min.js}"></script>
+   	<script th:src="@{js/bootstrap.min.js}"></script>
+   	<script th:src="@{js/jquery.easing.min.js}"></script>
+   	<script th:src="@{js/jquery.scrollTo.js}"></script>
+   	<script th:src="@{js/wow.min.js}"></script>
+   	<!-- Custom Theme JavaScript -->
+   	<script th:src="@{js/custom.js}"></script>
+      	
+      	
+</body>
+
+</html>
+	

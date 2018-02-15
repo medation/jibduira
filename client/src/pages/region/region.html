@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-title>
+        Regions
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="logout()">
+          <ion-icon name="exit"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  </ion-header>
+  
+  <ion-content class="no-scroll card-background-page" >
+    
+    <ion-item [hidden]="item.title == 'Search'" (click)="goToMonuments(item)" class="itemSearch">
+               
+              <h2>Resultat recherche :  {{item.name}}</h2>
+              <br>
+  
+    </ion-item>
+  
+    <ion-card *ngFor="let region of regions" (click)="goToMonuments(region)">    
+      <img [src]="region.urlToImage"/>
+      <div class="card-title">{{ region.name }}</div>
+    </ion-card>
+ 
+  </ion-content>

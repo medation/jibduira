@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-title>
+        Mes favories
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="logout()">
+          <ion-icon name="exit"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content class="no-scroll card-background-page" >
+  
+    <ion-refresher (ionRefresh)="updateHangout($event)">
+
+      <ion-refresher-content></ion-refresher-content>
+      
+    </ion-refresher>
+  
+    <ion-list>
+      <ion-item *ngFor="let monument of monuments" >
+        <ion-thumbnail item-start>
+          <img [src]="monument.urlToImage"/>
+        </ion-thumbnail>
+        <h2>{{ monument.name }}</h2>
+        <p>Ville : {{ monument.city.name }} </p>
+        <p>Region : {{ monument.region.name }} </p>
+        <button ion-button clear item-end (click)="goToMonument(monument)">Voir</button>
+      </ion-item>
+    </ion-list>
+
+
+  </ion-content>
+  

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="layout :: head"></head>
+
+<body>
+
+	<!-- Preloader -->
+	<div id="preloader">
+	  <div id="load"></div>
+	</div>
+	
+	
+	<!-- TOP NAV  -->  
+	<nav th:replace="layout :: nav"></nav>
+	
+    <!-- Section: intro -->
+    <section id="intro" class="intro">
+	
+		<div class="slogan">
+			<h2>Bienvenue sur <span class="text_color">JibDuira</span> </h2>
+			<h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h4>
+		</div>
+		<div class="page-scroll">
+			<a href="#monument" class="btn btn-circle">
+				<i class="fa fa-angle-double-down animated"></i>
+			</a>
+		</div>
+    </section>
+	<!-- /Section: intro -->
+      	
+    <!-- Section: about -->
+    <section id="monument" class="home-section text-center">
+		<div class="heading-about">
+		
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.2s">
+						<div class="section-heading">
+							<h4>Liste de tout les monuments sur le site</h4>
+							<i class="fa fa-2x fa-angle-down"></i>
+							<hr class="marginbot-50">
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		
+		<div class="container">
+
+	        <div class="row">
+	            <div th:each="monument : ${monuments}" class="col-xs-6 col-sm-3 col-md-3" style="height : 400px; margin-top:20px;">
+					<div class="wow bounceInUp" data-wow-delay="0.2s">
+		                
+		                <div class="team boxed-grey">
+		                    <div class="inner">
+								<h5 th:text="${monument.name}"></h5>
+		                        <div ><img th:src="${monument.urlToImage}" alt="" class="img-responsive img-rounded img-monument" /></div>
+		                        <p th:text="${monument.description}" class="subtitle description"></p>
+		                        <a th:href="'/monument/'+@{${monument.id}}" class="subtitle"> En savoir plus ... </a>
+		                    </div>
+		                </div>
+					</div>
+	            </div>
+	        </div>		
+		</div>
+	</section>
+	<!-- /Section: about --> 
+      	
+    <!-- Core JavaScript Files -->
+   	<script th:src="@{js/jquery.min.js}"></script>
+   	<script th:src="@{js/bootstrap.min.js}"></script>
+   	<script th:src="@{js/jquery.easing.min.js}"></script>
+   	<script th:src="@{js/jquery.scrollTo.js}"></script>
+   	<script th:src="@{js/wow.min.js}"></script>
+   	<!-- Custom Theme JavaScript -->
+   	<script th:src="@{js/custom.js}"></script>
+   	
+</body>
+
+</html>
+	

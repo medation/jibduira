@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="layout :: head"></head>
+
+<body>
+
+	<!-- Preloader -->
+	<div id="preloader">
+	  <div id="load"></div>
+	</div>
+	
+	<!-- TOP NAV -->  
+	<nav th:replace="layout :: nav"></nav>
+	
+	
+	<!-- Section: contact -->
+    <section id="contact" class="home-section text-center">
+		<div class="heading-contact">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.2s">
+					<div class="section-heading">
+					<h2>Liste des monuments</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="container">
+
+		    <div class="row">
+		        <div class="col-lg-8 col-lg-offset-2" style="background : #fff">
+		                <div class="table table-striped">    
+		                   <table class="table">
+							    <thead>
+							      <tr>
+							        <th>Nom du monument</th>
+							        <th>Ville</th>
+							        <th>Region</th>
+							        <th>Position</th>
+							        <th>Editer</th>
+							        <th>Supprimer</th>
+							      </tr>
+							    </thead>
+							    <tbody>
+							    <tr th:each="monument : ${monuments}">
+							        <td th:text="${monument.name}"></td>
+							        <td th:text="${monument.city.name}"></td>
+							        <td th:text="${monument.region.name}"></td>
+							        <td>(<span th:text="${monument.latitude}"></span>,<span th:text="${monument.longitude}"></span>)</td>
+							        <td><a th:href="@{${monument.id}}+'/editMonument/'"><button class="btn"><i class="ion-wrench"></i></button></a></td>
+							        <td><a th:href="@{${monument.id}}+'/delete/'"><button class="btn" ><i class="ion-trash-a"></i></button></a></td>
+							     </tr>
+							    </tbody>
+							</table>
+						</div>
+		        </div>
+		    </div>	
+
+		</div>
+	</section>
+	<!-- /Section: contact -->
+	
+	<!-- Core JavaScript Files -->
+   	<script th:src="@{js/jquery.min.js}"></script>
+   	<script th:src="@{js/bootstrap.min.js}"></script>
+   	<script th:src="@{js/jquery.easing.min.js}"></script>
+   	<script th:src="@{js/jquery.scrollTo.js}"></script>
+   	<script th:src="@{js/wow.min.js}"></script>
+   	<!-- Custom Theme JavaScript -->
+   	<script th:src="@{js/custom.js}"></script>
+      	
+      	
+</body>
+
+</html>
+	

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="layout :: head"></head>
+
+<body>
+
+	<!-- Preloader -->
+	<div id="preloader">
+	  <div id="load"></div>
+	</div>
+	
+	<!-- TOP NAV -->  
+	<nav th:replace="layout :: nav"></nav>
+	
+	
+	<!-- Section: Login -->
+    <section id="contact" class="home-section text-center">
+		<div class="heading-contact">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="wow bounceInDown" data-wow-delay="0.2s">
+					<div class="section-heading">
+					<h2>Connectez-vous</h2>
+					<i class="fa fa-2x fa-angle-down"></i>
+						<p>Pas encore de compte ? <a href="/registration" class="c-green"> Inscrivez-vous déja maintenant.</a></p>
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="container">
+
+			<div class="row">
+				<div class="col-lg-2 col-lg-offset-5">
+					<hr class="marginbot-50">
+				</div>
+			</div>
+		    <div class="row">
+		        <div class="col-lg-8 col-lg-offset-2">
+		            <div class="">
+		                <form id="contact-form" role="form" th:action="@{/login}" method="POST" autocomplete="off">
+			                <div class="row">
+		                           	<div align="center" th:if="${param.error}">
+										<p style="font-size: 20; color: #FF1C19;">Nom d'utilisateur ou mot de passe incorrecte ! </p>
+									</div>
+				                    <div class="col-md-6 col-md-offset-3">
+				                        <div class="form-group">
+				                            <label for="username"> Nom d'utilisateur</label>
+				                            <input type="text" name="username" class="form-control" id="username" placeholder="Entrez votre nom d'utilisateur" required="" ></input>				                          
+				                        </div>
+				                        <div class="form-group">
+				                            <label for="password"> Mot de passe</label>
+				                            <input type="password" name="password" class="form-control" id="password" placeholder="Entrez votre mot de passe" required=""></input>
+				                        </div>
+				                        <button type="submit" class="btn btn-skin pull-right" value="Login" name="submit" id="btnContactUs">
+				                            Connexion</button>
+				                    </div>
+			                </div>
+		                </form>
+		            </div>
+		        </div>
+		    </div>	
+
+		</div>
+	</section>
+	<!-- /Section: Login -->
+
+    
+	<!-- Core JavaScript Files -->
+   	<script th:src="@{js/jquery.min.js}"></script>
+   	<script th:src="@{js/bootstrap.min.js}"></script>
+   	<script th:src="@{js/jquery.easing.min.js}"></script>
+   	<script th:src="@{js/jquery.scrollTo.js}"></script>
+   	<script th:src="@{js/wow.min.js}"></script>
+   	<!-- Custom Theme JavaScript -->
+   	<script th:src="@{js/custom.js}"></script>
+     	
+      	
+</body>
+
+</html>
+	
