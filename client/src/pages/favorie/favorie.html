@@ -20,15 +20,23 @@
     </ion-refresher>
   
     <ion-list>
-      <ion-item *ngFor="let monument of monuments" >
-        <ion-thumbnail item-start>
-          <img [src]="monument.urlToImage"/>
-        </ion-thumbnail>
-        <h2>{{ monument.name }}</h2>
-        <p>Ville : {{ monument.city.name }} </p>
-        <p>Region : {{ monument.region.name }} </p>
-        <button ion-button clear item-end (click)="goToMonument(monument)">Voir</button>
-      </ion-item>
+      <ion-item-sliding *ngFor="let monument of monuments">
+        <ion-item  >
+          <ion-thumbnail item-start>
+            <img [src]="monument.urlToImage"/>
+          </ion-thumbnail>
+          <h2>{{ monument.name }}</h2>
+          <p>Ville : {{ monument.city.name }} </p>
+          <p>Region : {{ monument.region.name }} </p>
+          <button ion-button clear item-end (click)="goToMonument(monument)">Voir</button>
+        </ion-item>
+        <ion-item-options side="right">
+            <button ion-button color="danger" (click)="deleteFavorie(monument)">
+              <ion-icon name="md-trash"></ion-icon>
+              Supprimer
+            </button>
+        </ion-item-options>
+      </ion-item-sliding>
     </ion-list>
 
 

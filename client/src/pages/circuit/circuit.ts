@@ -6,7 +6,7 @@ import {Component} from '@angular/core';
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {AuthenticationService} from "../../services/authentication";
 import {HttpClient} from "@angular/common/http";
-import {App,NavParams, ModalController, ViewController} from 'ionic-angular';
+import {App,NavParams, ModalController, ViewController, ToastController} from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CircuitService } from '../../services/circuit.service';
 
@@ -19,15 +19,22 @@ export class Circuit {
   user: string;
   circuits : any;
   circuit : any;
+  errorMessage: string;
+  form : FormGroup;
 
   constructor(private authenticationService: AuthenticationService,
               private navParams: NavParams,
               public modalCtrl: ModalController,
               private app: App,
+              public toastCtrl: ToastController,
+              public formBuilder : FormBuilder,
+              private circuitService : CircuitService,
               private utility: Utility,
               private httpClient: HttpClient) {
     
-                
+          this.form = this.formBuilder.group({
+            name: ['', Validators.required]
+          });
   }
 
   ionViewDidLoad() {   
@@ -35,22 +42,71 @@ export class Circuit {
   }
 
   updateHangout() {
-              
+        //Show loading
+        var loading = this.utility.getLoader();
+        loading.present();
+
+        this.circuitService.getCircuits().subscribe(data => {
+        
+            this.circuits = data;
+             
+           //Hide loading
+            setTimeout(function(){
+                loading.dismiss();
+            },1000); 
+
+        });
   }
 
-  addCircuit() {
-    let modal = this.modalCtrl.create(AddCircuitModal);
-    modal.present();
+  onSubmit(): void {
+    this.circuitService
+        .addCircuit(this.form.value.name)
+        .subscribe(data => {
+            this.updateHangout();
+        });
+
+        let toast = this.toastCtrl.create({
+          message: `Le nouveau circuit a été ajouté avec succée`,
+          duration: 2000,
+          position: "bottom"
+        });
+    
+        toast.present(toast);
   }
+
 
   doRefresh(refresher) {
 
         setTimeout(() => {
+          this.updateHangout();
           refresher.complete();
         }, 500);
 
   }
 
+  goToCircuit(circuit){
+    let nav = this.app.getRootNav();
+    nav.push(CircuitModal, {
+      "circuit" : circuit
+    });
+  }
+
+  deleteCircuit(circuit){
+    //Show loading
+    var loading = this.utility.getLoader();
+    loading.present();
+
+    this.circuitService.deleteCircuit(circuit.id).subscribe(data => {
+    
+        this.circuits = data;
+         
+       //Hide loading
+        setTimeout(function(){
+            loading.dismiss();
+        },1000); 
+
+    });
+  }
 
   logout() {
     this.authenticationService.logout();
@@ -58,16 +114,16 @@ export class Circuit {
 
 }
 
+
+
+
 @Component({
   selector: 'page-circuit',
   templateUrl: 'circuit-modal.html'
 })
-export class AddCircuitModal {
+export class CircuitModal {
 
-  form : FormGroup;
-  hasError: boolean;
-  errorMessage: string;
-  circuits : any;
+  circuit : any;
 
   constructor(private navParams: NavParams,
               public modalCtrl: ModalController,
@@ -77,24 +133,20 @@ export class AddCircuitModal {
               public formBuilder: FormBuilder,
               private httpClient: HttpClient) {
     
-        this.form = this.formBuilder.group({
-          name: ['', Validators.required]
-        });       
+      this.circuit = navParams.data.circuit;
+
   }
 
-  onSubmit(): void {
-
-
-    this.circuitService
-        .addCircuit(this.form.value.name)
-        .subscribe(data => {
-            this.circuits = data;
+  goToMonument(monument){
+    let nav = this.app.getRootNav();
+    nav.push(Monument, {
+            "monument" : monument
         });
-    }
-
+  }
 
   dismiss() {
     this.viewCtrl.dismiss();
   }
 }
+
 

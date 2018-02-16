@@ -17,9 +17,10 @@ public interface ITourismService {
 	void updateMonument(Monument monument);
 	
 	//Gestion des circuits
-	public void saveCircuit(Circuit circuit, String email);
+	public void saveCircuit(Circuit circuit);
 	public List<Circuit> findAllCircuit();
 	public List<Circuit> findAllCircuitsByUser(String email);
+	public Circuit findCircuitById(int id);
 	public void deleteCircuit(int id);
 	public void updateCircuit(int id);
 	

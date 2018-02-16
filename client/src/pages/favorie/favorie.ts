@@ -64,6 +64,22 @@ export class Favorie {
 
   }
 
+  deleteFavorie(monument){
+    //Show loading
+    var loading = this.utility.getLoader();
+    loading.present();
+
+    this.monumentService.deleteMonumentFavorie(monument.id).subscribe(data => {
+    
+        this.monuments = data;
+         
+       //Hide loading
+        setTimeout(function(){
+            loading.dismiss();
+        },1000); 
+
+    });
+  }
 
   goToMonument(monument){
     let nav = this.app.getRootNav();

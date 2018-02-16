@@ -15,23 +15,31 @@ page-monuments {
         padding-top : 30px;
     }
 
-    .card{
-        margin: 0px;
-        margin-bottom: 10px; 
-        width: 100%;
-        padding: 0px;
-        position: relative;
-        text-align: center;
-    }
+
 
 
     .card-title {
         position: absolute;
-        top: 36%;
-        font-size: 2.0em;
+        top: 85%;
+        font-size: 1.0em;
         width: 100%;
         font-weight: bold;
-        color: #fff;
+        color: rgb(219, 217, 226);
+    }
+
+    .col{
+        padding: 1px;
+    }
+    .card{
+        margin: 0px;
+        width: 100%;
+        position: relative;
+    }
+    .card-content{
+        padding : 0px;
+    }
+    .imgBanner{
+        height: 140px;
     }
 
     .item{

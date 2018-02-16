@@ -27,4 +27,20 @@ export class CircuitService {
         return this.httpClient.post(url, name);    
     }
 
+    public getCircuits(): Observable<any> {
+        const url = `${SERVER_URL}/circuits`;
+        return this.httpClient.get(url);    
+    }
+
+    public deleteCircuit(id : string): Observable<any> {
+        const url = `${SERVER_URL}/${id}/deleteCircuit`;
+        return this.httpClient.delete(url);    
+    }
+
+    public addMonumentToCircuit(idCircuit : string, monument : any): Observable<any> {
+        const url = `${SERVER_URL}/${idCircuit}/addMonumentToCircuit`;
+        return this.httpClient.post(url,monument);    
+    }
+
+
 }

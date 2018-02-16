@@ -1,36 +1,64 @@
 <ion-header>
-    <ion-navbar color="primary">
-      <ion-title>
-        Mes Circuits
-      </ion-title>
-      <ion-buttons end>
-        <button ion-button icon-only (click)="logout()">
-          <ion-icon name="exit"></ion-icon>
-        </button>
-      </ion-buttons>
-    </ion-navbar>
-  </ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Mes Circuits
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="exit"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
   
-  <ion-content class="no-scroll card-background-page" >
-  
+<ion-content class="no-scroll card-background-page" >
+    
+    <!--
     <ion-refresher (ionRefresh)="doRefresh($event)">
 
       <ion-refresher-content></ion-refresher-content>
       
     </ion-refresher>
+    -->
 
-    <button ion-button outline round large full (click)="addCircuit()"> Ajouter un circuit </button>
+    
 
     <ion-list>
-      <ion-item  >
-        <ion-thumbnail item-start>
-          <img [src]=""/>
-        </ion-thumbnail>
-        <h2></h2>
-        <p></p>
-        <button ion-button clear item-end >Voir</button>
-      </ion-item>
+      <ion-item-sliding *ngFor="let circuit of circuits" >
+        <ion-item >
+          <ion-thumbnail item-start>
+            <img [src]=""/>
+          </ion-thumbnail>
+          <h2>{{circuit.name}}</h2>
+          <p></p>
+          <button ion-button clear item-end (click)="goToCircuit(circuit)" >Voir</button>
+        </ion-item>
+        <ion-item-options side="right">
+            <button ion-button color="danger" (click)="deleteCircuit(circuit)">
+              <ion-icon name="md-trash"></ion-icon>
+               Supprimer
+            </button>
+        </ion-item-options>
+      </ion-item-sliding>
     </ion-list>
 
 
-  </ion-content>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar class="footer">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+     
+            <p ion-text color="danger" *ngIf="hasError">{{errorMessage}}</p>
+      
+            <ion-item>
+              <ion-input type="text" placeholder="Titre du circuit " formControlName="name"></ion-input>
+            </ion-item>
+      
+            <button ion-button outline round full class="text-footer" type="submit" [disabled]="!form.valid">
+                Ajouter un nouveau circuit
+            </button>
+      
+        </form>
+    </ion-toolbar>
+</ion-footer>

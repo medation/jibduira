@@ -1,32 +1,64 @@
 <ion-header>
-    <ion-navbar color="primary">
-      <ion-title>
-        Nouveau Circuit
-      </ion-title>
-      <ion-buttons start>
-        <button ion-button (click)="dismiss()">
-          <span ion-text color="seconday" showWhen="ios">Annuler</span>
-          <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
-        </button>
-      </ion-buttons>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content class="no-scroll card-background-page" >
-  
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-     
-      <p ion-text color="danger" *ngIf="hasError">{{errorMessage}}</p>
-
-      <ion-item>
-        <ion-input type="text" placeholder="Titre du circuit " formControlName="name"></ion-input>
-      </ion-item>
-
-      <button ion-button block  type="submit" [disabled]="!form.valid">
-        Ajouter
+  <ion-navbar color="primary">
+    <ion-title>
+      Information circuit {{ circuit.name }}
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="seconday" showWhen="ios">Annuler</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
       </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
 
-    </form>    
+<ion-content class="no-scroll card-background-page modal-content" >
 
 
-  </ion-content>
+    <ion-card class="modal-card">
+
+        <img src="assets/couverture_circuit.jpg">
+        <ion-fab right top>
+          <button ion-fab>
+            <ion-icon name="map"></ion-icon>
+          </button>
+        </ion-fab>
+        <ion-item>
+            <ion-list>
+                <ion-list-header [hidden]="circuit.monuments.length == 0">
+                      <ion-fab right top>
+                        <button ion-fab>
+                          <ion-icon name="map"></ion-icon>
+                        </button>
+                      </ion-fab>
+                    Monuments :
+                </ion-list-header>
+                <ion-item-sliding  *ngFor="let monument of circuit.monuments" [hidden]="circuit.monuments.count == 0">
+                  <ion-item  >
+                    <ion-thumbnail item-start>
+                      <img [src]="monument.urlToImage"/>
+                    </ion-thumbnail>
+                    <h2>{{ monument.name }}</h2>
+                    <p>Ville : {{ monument.city.name }} </p>
+                    <p>Region : {{ monument.region.name }} </p>
+                    <button ion-button clear item-end (click)="goToMonument(monument)">Voir</button>
+                  </ion-item>
+                  <ion-item-options side="right">
+                      <button ion-button color="danger" >
+                        <ion-icon name="md-trash"></ion-icon>
+                        Supprimer
+                      </button>
+                  </ion-item-options>
+                </ion-item-sliding>
+        
+                <ion-list-header [hidden]="circuit.monuments.length > 0">
+                    Aucun monument ajouté actuellement
+                </ion-list-header>
+               
+              </ion-list>
+        </ion-item>
+
+      </ion-card>  
+    
+
+</ion-content>

@@ -35,7 +35,6 @@ public class Circuit {
 	private String description;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JsonIgnore
 	@JoinTable(name = "monument_circuit", joinColumns = @JoinColumn(name = "monument_id"), inverseJoinColumns = @JoinColumn(name = "circuit_id"))
 	private List<Monument> monuments;
 	
@@ -117,6 +116,10 @@ public class Circuit {
 
 	public void getCircuitOptimal(float latitude, float longitude) {
 		
+	}
+
+	public boolean containsMonument(Monument monument){
+		return monuments.contains(monument);
 	}
 
 	public void addMonument(Monument monument){

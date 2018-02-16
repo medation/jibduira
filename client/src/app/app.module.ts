@@ -11,7 +11,7 @@ import {Region} from '../pages/region/region';
 import { Monuments } from './../pages/monuments/monuments';
 import { Monument } from './../pages/monument/monument';
 import {Favorie} from '../pages/favorie/favorie';
-import {Circuit, AddCircuitModal} from '../pages/circuit/circuit';
+import {Circuit, CircuitModal} from '../pages/circuit/circuit';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {Login} from "../pages/login/login";
@@ -44,7 +44,7 @@ export function jwtOptionsFactory(storage: Storage) {
     Monument,
     Favorie,
     Circuit,
-    AddCircuitModal,
+    CircuitModal,
     Tabs,
     Login,
     Signup
@@ -76,7 +76,7 @@ export function jwtOptionsFactory(storage: Storage) {
     Tabs,
     Favorie,
     Circuit,
-    AddCircuitModal,
+    CircuitModal,
     Login,
     Signup
   ],

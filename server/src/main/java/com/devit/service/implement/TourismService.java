@@ -80,8 +80,7 @@ public class TourismService implements ITourismService {
 	//Gestion des circuits
 	
 	@Override
-	public void saveCircuit(Circuit circuit, String email) {
-		circuit.setUser(userRepository.findByEmail(email));
+	public void saveCircuit(Circuit circuit) {
 		circuitRepository.save(circuit);
 	}
 
@@ -97,6 +96,11 @@ public class TourismService implements ITourismService {
 			return (List<Circuit>) circuitRepository.findAll();
 		else
 			return user.getCircuits();
+	}
+
+	@Override
+	public Circuit findCircuitById(int id) {
+		return circuitRepository.findOne(id);
 	}
 
 	@Override

@@ -57,7 +57,7 @@ public class User {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_monument", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "monument_id"))
 	private List<Monument> monuments;
-	
+
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Circuit> circuits;
 
@@ -179,6 +179,18 @@ public class User {
 
 	public boolean containsMonument(Monument monument){
 		return monuments.contains(monument);
+	}
+
+	public boolean containsCircuit(Circuit circuit){
+		return circuits.contains(circuit);
+	}
+
+	public boolean deleteCircuit(Circuit circuit){
+		return circuits.remove(circuit);
+	}
+
+	public boolean deleteMonument(Monument monument){
+		return monuments.remove(monument);
 	}
 
 	public boolean hasRole(String roleName) {

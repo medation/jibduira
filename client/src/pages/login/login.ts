@@ -23,7 +23,7 @@ export class Login {
   login(value: any) {
     let loading = this.loadingCtrl.create({
       spinner: 'bubbles',
-      content: 'Logging in ...'
+      content: 'Authentification en cours ...'
     });
 
     loading.present();

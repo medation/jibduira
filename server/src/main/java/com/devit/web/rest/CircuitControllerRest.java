@@ -30,8 +30,45 @@ public class CircuitControllerRest {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsernameOrEmail(auth.getName());
         Circuit circuit = new Circuit(name);
+        /*
         user.addCircuit(circuit);
         userService.save(user);
+        */
+        circuit.setUser(user);
+        tourismService.saveCircuit(circuit);
+        return circuit;
+    }
+
+    @RequestMapping(value={"/circuits"}, method = RequestMethod.GET)
+    public List<Circuit> getCircuitsApi(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsernameOrEmail(auth.getName());
+        return user.getCircuits();
+    }
+
+    @DeleteMapping("/{id}/deleteCircuit")
+    public List<Circuit> deleteCircuitApi(@PathVariable String id){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsernameOrEmail(auth.getName());
+        Circuit circuit = tourismService.findCircuitById(Integer.parseInt(id));
+        if(user.deleteCircuit(circuit)){
+            tourismService.deleteCircuit(Integer.parseInt(id));
+            userService.save(user);
+        }
+        return user.getCircuits();
+    }
+
+    @PostMapping("/{id}/addMonumentToCircuit")
+    public Circuit updateCircuitApi(@PathVariable String id,@RequestBody Monument monument){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsernameOrEmail(auth.getName());
+        Circuit circuit = tourismService.findCircuitById(Integer.parseInt(id));
+        if(user.containsCircuit(circuit)) {
+            if (!circuit.containsMonument(monument)){
+                circuit.addMonument(monument);
+                tourismService.saveCircuit(circuit);
+            }
+        }
         return circuit;
     }
 }

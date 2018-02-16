@@ -6,5 +6,33 @@ page-circuit {
             overflow-y: scroll;
         }
     }
-  
+
+    .list{
+        padding-bottom: 0px; 
+    }
+
+    .modal-content{
+        background-color: color($colors, secondary);
+    }
+
+    .modal-card{
+        margin: 0px;
+        width: 100%;
+    }
+
+    ion-footer {
+        height: 100px;
+        .toolbar-background {
+        background: transparent !important;
+        background-color: transparent !important;
+        }
+        .footer {
+        text-align: center;
+        background-color: color($colors, primary);
+        min-height: 100px;
+        }
+        .text-footer{
+            color: color($colors, light);
+        }
+    }
 }

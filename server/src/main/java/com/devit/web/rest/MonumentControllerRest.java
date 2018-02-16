@@ -2,21 +2,14 @@ package com.devit.web.rest;
 
 import java.util.List;
 
-import com.devit.model.User;
+import com.devit.model.*;
 import com.devit.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.devit.model.City;
-import com.devit.model.Monument;
-import com.devit.model.Region;
 import com.devit.service.ISpotService;
 import com.devit.service.ITourismService;
 
@@ -77,6 +70,17 @@ public class MonumentControllerRest {
 	public List<Monument> getFavoriesMonuments(){
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findByUsernameOrEmail(auth.getName());
+		return user.getMonuments();
+	}
+
+	@DeleteMapping("/{id}/deleteMonumentFavorie")
+	public List<Monument> deleteMonumentFavorieApi(@PathVariable String id){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByUsernameOrEmail(auth.getName());
+		Monument monument = tourismService.findMonumentById(Integer.parseInt(id));
+		if(user.deleteMonument(monument)){
+			userService.save(user);
+		}
 		return user.getMonuments();
 	}
 

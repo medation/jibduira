@@ -23,7 +23,7 @@ export class Signup {
   signup(value: any) {
     let loading = this.loadingCtrl.create({
       spinner: 'bubbles',
-      content: 'Signing up ...'
+      content: 'Enregistrement en cours ...'
     });
 
     loading.present();

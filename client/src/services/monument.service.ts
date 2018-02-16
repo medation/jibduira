@@ -47,4 +47,9 @@ export class MonumentService {
         return this.httpClient.get(url);
     }
 
+    public deleteMonumentFavorie(id : string): Observable<any> {
+        const url = `${SERVER_URL}/${id}/deleteMonumentFavorie`;
+        return this.httpClient.delete(url);    
+    }
+
 }
