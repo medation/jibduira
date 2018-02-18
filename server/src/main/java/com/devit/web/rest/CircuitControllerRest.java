@@ -46,12 +46,21 @@ public class CircuitControllerRest {
         return user.getCircuits();
     }
 
+    @RequestMapping(value={"/{id}/circuit"}, method = RequestMethod.GET)
+    public Circuit getCircuitsApi(@PathVariable String id){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsernameOrEmail(auth.getName());
+        Circuit circuit = user.findCircuit(Integer.parseInt(id));
+        return circuit;
+    }
+
     @DeleteMapping("/{id}/deleteCircuit")
     public List<Circuit> deleteCircuitApi(@PathVariable String id){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByUsernameOrEmail(auth.getName());
         Circuit circuit = tourismService.findCircuitById(Integer.parseInt(id));
         if(user.deleteCircuit(circuit)){
+            circuit.removeAllMonument();
             tourismService.deleteCircuit(Integer.parseInt(id));
             userService.save(user);
         }
@@ -64,8 +73,7 @@ public class CircuitControllerRest {
         User user = userService.findByUsernameOrEmail(auth.getName());
         Circuit circuit = tourismService.findCircuitById(Integer.parseInt(id));
         if(user.containsCircuit(circuit)) {
-            if (!circuit.containsMonument(monument)){
-                circuit.addMonument(monument);
+            if(circuit.addMonument(monument)){
                 tourismService.saveCircuit(circuit);
             }
         }

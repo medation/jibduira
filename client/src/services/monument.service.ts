@@ -32,6 +32,11 @@ export class MonumentService {
         return this.httpClient.get(url);   
     }
 
+    public getAllMonuments(): Observable<any> {
+        const url = `${SERVER_URL}/monuments`;
+        return this.httpClient.get(url);  
+    }
+
     public getMonuments(type: string, name : string): Observable<any> {
         const url = `${SERVER_URL}/${type}/${name}/monuments`;
         return this.httpClient.get(url);  

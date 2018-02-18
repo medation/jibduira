@@ -105,6 +105,7 @@ public class TourismService implements ITourismService {
 
 	@Override
 	public void deleteCircuit(int id) {
+		//circuitRepository.deleteLinkCircuit(id);
 		circuitRepository.delete(id);
 	}
 

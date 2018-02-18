@@ -76,9 +76,7 @@ export class Monument {
   }
 
   doSelectCircuit(){
-
     
-
     let alert = this.alerCtrl.create();
     alert.setTitle('Choisissez un circuit');
 
@@ -86,7 +84,7 @@ export class Monument {
       alert.addInput({
         type: 'radio',
         label: circuit.name,
-        value: circuit.id,
+        value: circuit,
         checked: false
       });
     }
@@ -94,12 +92,37 @@ export class Monument {
     alert.addButton({
       text: 'Ok',
       handler: data => {
+        var test : boolean = true;
         this.testSelectOpen = false;
         this.testCircuitResult = data;
-        this.circuitService.addMonumentToCircuit(data,this.monument).subscribe(data => {
-          this.circuit = data; 
-          this.goToCircuit(this.circuit)
-        });
+        if(this.testCircuitResult != null){
+          for(let monumentSearch of this.testCircuitResult.monuments){
+            if(this.monument.id == monumentSearch.id){
+                test = false;
+                let toast = this.toastCtrl.create({
+                  message: `Ce monument est déja présent dans votre circuit`,
+                  duration: 2000,
+                  position: "bottom"
+                });
+            
+                toast.present(toast);
+              }
+          }
+          if(test){
+            this.circuitService.addMonumentToCircuit(data.id,this.monument).subscribe(data => {
+              this.circuit = data; 
+              this.goToCircuit(this.circuit)
+            });
+          }
+        }else {
+          let toast = this.toastCtrl.create({
+            message: `Veuillez créer un circuit d'abords`,
+            duration: 2000,
+            position: "bottom"
+          });
+      
+          toast.present(toast);
+        }
       }
     });
 

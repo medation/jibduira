@@ -6,6 +6,7 @@ import { Region } from '../region/region';
 import { Home } from '../home/home';
 import { Favorie } from '../favorie/favorie';
 import { Circuit } from '../circuit/circuit';
+import { Map } from '../map/map';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -17,6 +18,7 @@ export class Tabs {
   tab3Root: any = Region;
   tab4Root: any = Favorie;
   tab5Root: any = Circuit;
+  tab6Root: any = Map;
   mySelectedIndex: number;
 
   constructor(navParams: NavParams) {

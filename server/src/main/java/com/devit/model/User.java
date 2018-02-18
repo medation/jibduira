@@ -185,6 +185,14 @@ public class User {
 		return circuits.contains(circuit);
 	}
 
+	public Circuit findCircuit(int id){
+		for(Circuit circuit : circuits){
+			if(circuit.getId() == id)
+				return circuit;
+		}
+		return null;
+	}
+
 	public boolean deleteCircuit(Circuit circuit){
 		return circuits.remove(circuit);
 	}

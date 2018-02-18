@@ -61,7 +61,7 @@ public class Monument {
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JsonIgnore
-	@JoinTable(name = "monument_circuit", joinColumns = @JoinColumn(name = "circuit_id"), inverseJoinColumns = @JoinColumn(name = "monument_id"))
+	@JoinTable(name = "monument_circuit", joinColumns = @JoinColumn(name = "monument_id"), inverseJoinColumns = @JoinColumn(name = "circuit_id"))
 	private List<Circuit> circuits;
 	
 	@ManyToOne
@@ -193,6 +193,11 @@ public class Monument {
 
 	public void setRegion(Region region) {
 		this.region = region;
+	}
+
+	public void addToCircuit(Circuit circuit) {
+		if(!circuits.contains(circuit))
+			circuits.add(circuit);
 	}
 
 }

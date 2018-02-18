@@ -129,11 +129,38 @@ export class CircuitModal {
               public modalCtrl: ModalController,
               public viewCtrl : ViewController,
               private app: App,
+              private utility: Utility, 
               private circuitService : CircuitService,
               public formBuilder: FormBuilder,
               private httpClient: HttpClient) {
     
       this.circuit = navParams.data.circuit;
+
+  }
+
+  updateHangout() {
+      //Show loading
+      var loading = this.utility.getLoader();
+      loading.present();
+
+      this.circuitService.getCircuit(this.circuit.id).subscribe(data => {
+      
+          this.circuit = data;
+          
+        //Hide loading
+          setTimeout(function(){
+              loading.dismiss();
+          },1000); 
+
+      });
+  }
+
+  doRefresh(refresher) {
+
+      setTimeout(() => {
+        this.updateHangout();
+        refresher.complete();
+      }, 500);
 
   }
 

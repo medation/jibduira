@@ -8,8 +8,9 @@ import {Spot} from '../pages/spot/spot';
 import {City} from '../pages/city/city';
 import {Tabs} from '../pages/tabs/tabs';
 import {Region} from '../pages/region/region';
-import { Monuments } from './../pages/monuments/monuments';
-import { Monument } from './../pages/monument/monument';
+import {Monuments} from './../pages/monuments/monuments';
+import {Monument} from './../pages/monument/monument';
+import {Map} from './../pages/map/map';
 import {Favorie} from '../pages/favorie/favorie';
 import {Circuit, CircuitModal} from '../pages/circuit/circuit';
 import {StatusBar} from '@ionic-native/status-bar';
@@ -24,6 +25,8 @@ import {CircuitService} from "../services/circuit.service";
 import {HttpClientModule} from "@angular/common/http";
 import {JWT_OPTIONS, JwtModule} from '@auth0/angular-jwt';
 import { Utility } from '../providers/utility';
+import {GoogleMaps} from '@ionic-native/google-maps';
+import { Geolocation } from "@ionic-native/geolocation";
 
 export function jwtOptionsFactory(storage: Storage) {
   return {
@@ -45,6 +48,7 @@ export function jwtOptionsFactory(storage: Storage) {
     Favorie,
     Circuit,
     CircuitModal,
+    Map,
     Tabs,
     Login,
     Signup
@@ -77,6 +81,7 @@ export function jwtOptionsFactory(storage: Storage) {
     Favorie,
     Circuit,
     CircuitModal,
+    Map,
     Login,
     Signup
   ],
@@ -84,6 +89,8 @@ export function jwtOptionsFactory(storage: Storage) {
     StatusBar,
     SplashScreen,
     Utility,
+    GoogleMaps,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthenticationService,
     MonumentService,

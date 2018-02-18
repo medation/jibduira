@@ -35,7 +35,7 @@ public class Circuit {
 	private String description;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "monument_circuit", joinColumns = @JoinColumn(name = "monument_id"), inverseJoinColumns = @JoinColumn(name = "circuit_id"))
+	@JoinTable(name = "monument_circuit", joinColumns = @JoinColumn(name = "circuit_id"), inverseJoinColumns = @JoinColumn(name = "monument_id"))
 	private List<Monument> monuments;
 	
 	@ManyToOne
@@ -118,12 +118,20 @@ public class Circuit {
 		
 	}
 
+	public void removeAllMonument(){
+		this.monuments.removeAll(this.monuments);
+	}
+
 	public boolean containsMonument(Monument monument){
 		return monuments.contains(monument);
 	}
 
-	public void addMonument(Monument monument){
-		this.monuments.add(monument);
+	public boolean addMonument(Monument monument){
+		if(!monuments.contains(monument)){
+			this.monuments.add(monument);
+			return true;
+		}
+		else return false;
 	}
 
 }

@@ -1,18 +1,18 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      Information circuit {{ circuit.name }}
+      Information circuit
     </ion-title>
-    <ion-buttons start>
-      <button ion-button (click)="dismiss()">
-        <span ion-text color="seconday" showWhen="ios">Annuler</span>
-        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="no-scroll card-background-page modal-content" >
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+
+      <ion-refresher-content></ion-refresher-content>
+      
+    </ion-refresher>
 
 
     <ion-card class="modal-card">
@@ -44,7 +44,7 @@
                     <button ion-button clear item-end (click)="goToMonument(monument)">Voir</button>
                   </ion-item>
                   <ion-item-options side="right">
-                      <button ion-button color="danger" >
+                      <button ion-button color="danger" (click)="deleteCircuit(circuit)">
                         <ion-icon name="md-trash"></ion-icon>
                         Supprimer
                       </button>

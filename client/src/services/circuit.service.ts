@@ -32,6 +32,11 @@ export class CircuitService {
         return this.httpClient.get(url);    
     }
 
+    public getCircuit(id : string): Observable<any> {
+        const url = `${SERVER_URL}/${id}/circuit`;
+        return this.httpClient.get(url);    
+    }
+
     public deleteCircuit(id : string): Observable<any> {
         const url = `${SERVER_URL}/${id}/deleteCircuit`;
         return this.httpClient.delete(url);    
