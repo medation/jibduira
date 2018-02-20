@@ -26,8 +26,8 @@
             <img [src]="monument.urlToImage"/>
           </ion-thumbnail>
           <h2>{{ monument.name }}</h2>
-          <p>Ville : {{ monument.city.name }} </p>
-          <p>Region : {{ monument.region.name }} </p>
+          <p [hidden]="monument.city == null">Ville : {{ monument.city.name }} </p>
+          <p [hidden]="monument.region == null">Region : {{ monument.region.name }} </p>
           <button ion-button clear item-end (click)="goToMonument(monument)">Voir</button>
         </ion-item>
         <ion-item-options side="right">

@@ -9,6 +9,7 @@ import {HttpClient} from "@angular/common/http";
 import {App,NavParams, ModalController, ViewController, ToastController} from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CircuitService } from '../../services/circuit.service';
+import { CircuitMap } from '../circuit-map/circuit-map';
 
 @Component({
   selector: 'page-circuit',
@@ -138,6 +139,10 @@ export class CircuitModal {
 
   }
 
+  ionViewDidLoad() {
+    this.updateHangout();
+  }
+
   updateHangout() {
       //Show loading
       var loading = this.utility.getLoader();
@@ -173,6 +178,13 @@ export class CircuitModal {
 
   dismiss() {
     this.viewCtrl.dismiss();
+  }
+
+  tracerCircuit(){
+    let nav = this.app.getRootNav();
+    nav.push(CircuitMap, {
+            "circuit" : this.circuit
+        });
   }
 }
 

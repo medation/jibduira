@@ -51,15 +51,23 @@ public class MonumentController {
 	public ModelAndView addMonument() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("monument", new Monument());
+		modelAndView.addObject("cities", spotService.findAllCity());
+		modelAndView.addObject("regions", spotService.findAllRegion());
 		modelAndView.setViewName("formMonument");
 		return modelAndView;
 	}
 	
 	@RequestMapping(value={"/addMonument"}, method = RequestMethod.POST)
-	public ModelAndView createMonument(@Valid Monument monument, BindingResult bindingResult, Principal principal) {
+	public ModelAndView createMonument(@Valid Monument monument, BindingResult bindingResult, @RequestParam String cityName, @RequestParam String regionName, Principal principal) {
 		ModelAndView modelAndView = new ModelAndView();
+		City city = spotService.findCityByName(cityName);
+		Region region = spotService.findRegionByName(regionName);
+		monument.setCity(city);
+		monument.setRegion(region);
 		tourismService.saveMonument(monument, principal.getName());
 		modelAndView.addObject("successMessage", "Monument has been registered successfully");
+		modelAndView.addObject("cities", spotService.findAllCity());
+		modelAndView.addObject("regions", spotService.findAllRegion());
 		modelAndView.addObject("monument", new Monument());
 		modelAndView.setViewName("formMonument");
 		return modelAndView;

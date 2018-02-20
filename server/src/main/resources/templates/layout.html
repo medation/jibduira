@@ -51,8 +51,8 @@
 			        <li class="dropdown" sec:authorize="isAuthenticated()">
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mon espace<b class="caret"></b></a>
 			          <ul class="dropdown-menu">
-			            <li><a href="/addMonument">Ajouter un monument historique</a></li>
-			            <li><a href="/addCircuit">Ajouter un circuit touristique</a></li>
+			            <li><a sec:authorize="hasAuthority('ADMIN')" href="/addMonument">Ajouter un monument historique</a></li>
+			            <li><a sec:authorize="hasAuthority('ADMIN')" href="/addCircuit">Ajouter un circuit touristique</a></li>
 			            <li><a sec:authorize="hasAuthority('ADMIN')" href="/listMonuments">Gérer les monuments</a></li>
 			            <li><a href="/logout">Se déconnecter</a></li>
 			          </ul>

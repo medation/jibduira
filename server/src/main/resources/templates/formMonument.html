@@ -69,6 +69,20 @@
                            					<label th:errors="*{longitude}" class="validation-message"></label>
                            					<input name="longitude" type="text" th:field="*{longitude}" class="form-control" id="longitude" placeholder="longitude" required=""></input>
                            				</div>
+
+										<div class="form-group">
+											<label for="sel1">Ville</label>
+											<select class="form-control" id="sel1" name="cityName" >
+												<option th:each="city : ${cities}" th:text="${city.name}" th:value="${city.name}"></option>
+											</select>
+										</div>
+
+										<div class="form-group">
+											<label for="sel1">Region</label>
+											<select class="form-control" id="sel2" name="regionName" >
+												<option th:each="region : ${regions}" th:text="${region.name}" th:value="${region.name}"></option>
+											</select>
+										</div>
                            			</div>
 				                    <div class="col-md-8 col-md-offset-2"> 	
                            				<div class="form-group">

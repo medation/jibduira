@@ -90,7 +90,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //			  .and()
 			  .authorizeRequests()
 			    .antMatchers("/","/monuments","/monument/**","/searchByRegion","/searchByCity","/login","/registration","/loadCity","/loadRegion","/loadMonument").permitAll()
-			    .antMatchers("/myMonuments","/addMonument","/addCircuit").hasAuthority("USER")
+			    .antMatchers("/myMonuments").hasAuthority("USER")
 				.antMatchers("/**").hasAuthority("ADMIN").anyRequest()
 				.authenticated().and().csrf().disable().formLogin()
 				.loginPage("/login").failureUrl("/login?error=true")
