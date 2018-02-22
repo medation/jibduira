@@ -1,5 +1,5 @@
 import { Component , ViewChild ,ElementRef } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation'; 
 import { Utility } from '../../providers/utility';
 import { MonumentService } from '../../services/monument.service';
@@ -22,12 +22,16 @@ export class CircuitMap {
     monuments : any;
     infoWindows : any;
     waypts : any = [];
+    mode : any;
+
     constructor(public navCtrl: NavController,
                 private navParams: NavParams,
                 public monumentService: MonumentService, 
                 private geolocation : Geolocation,
+                public toastCtrl: ToastController,
                 public utility : Utility) {
  
+          this.mode = navParams.data.mode;
           this.monuments = navParams.data.circuit.monuments;
           for(let monument of this.monuments){
             this.waypts.push({
@@ -85,14 +89,21 @@ export class CircuitMap {
         directionsService.route({
             origin: new google.maps.LatLng(this.currentPos.coords.latitude,this.currentPos.coords.longitude),
             destination: new google.maps.LatLng(this.currentPos.coords.latitude,this.currentPos.coords.longitude),
-            travelMode: google.maps.TravelMode['DRIVING'],
+            travelMode: google.maps.TravelMode[this.mode],
+            optimizeWaypoints: true,
             waypoints: this.waypts,
         }, (res, status) => {
  
             if(status == google.maps.DirectionsStatus.OK){
                 directionsDisplay.setDirections(res);
             } else {
-                console.warn(status);
+                let toast = this.toastCtrl.create({
+                    message: `Excuse, quelque chose cloche ! :/`,
+                    duration: 2000,
+                    position: "bottom"
+                  });
+              
+                  toast.present(toast);
             }
  
         });

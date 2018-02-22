@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -96,13 +98,13 @@ public class AuthenticationControllerRest {
 		roleRepository.save(admin);
 	}
 	
-	@GetMapping("/public/loadAdmin")
+	@GetMapping("/public/isAdmin")
 	public void loadAdmin() {
-		User user = new User("admin","admin","admin","admin","email@admin");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findByUsernameOrEmail(auth.getName());
 		List<Role> roles = new ArrayList<>();
 		roles.add(roleRepository.findOne(2));
 		user.setRoles(roles);
-		user.encodePassword(this.passwordEncoder);
 		this.userService.save(user);
 	}
 

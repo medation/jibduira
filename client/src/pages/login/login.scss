@@ -32,6 +32,11 @@ page-login {
 
     .item{
         margin-bottom: 10px;
+        background-color: color($colors, secondary);  
+    }
+
+    .input{
+        color: color($colors, primary); 
     }
 
     ion-footer {

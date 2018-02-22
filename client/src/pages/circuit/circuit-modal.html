@@ -17,20 +17,30 @@
 
     <ion-card class="modal-card">
 
-        <img src="assets/couverture_circuit.jpg">
+        <img src="assets/couverture_circuit.jpg" style="max-height : 200px;">
         <ion-fab right top>
           <button ion-fab>
             <ion-icon name="map"></ion-icon>
           </button>
         </ion-fab>
+        <ion-list>
+            <ion-item>
+              <ion-label>Mode de voyage</ion-label>
+              <ion-select [(ngModel)]="mode" interface="popover">
+                <ion-option value="WALKING">A pieds</ion-option>
+                <ion-option value="BICYCLING">En vélo</ion-option>
+                <ion-option value="DRIVING">En voiture</ion-option>
+                <ion-option value="TRANSIT">En car</ion-option>
+              </ion-select>
+            </ion-item>
+        </ion-list>
         <ion-item>
             <ion-list>
+                <button ion-button outline round full (click)="tracerCircuit()" >
+                    Tracer mon circuit
+                </button>
+
                 <ion-list-header [hidden]="circuit.monuments.length == 0">
-                      <ion-fab right top>
-                        <button ion-fab>
-                          <ion-icon name="map"></ion-icon>
-                        </button>
-                      </ion-fab>
                     Monuments :
                 </ion-list-header>
                 <ion-item-sliding  *ngFor="let monument of circuit.monuments" [hidden]="circuit.monuments.count == 0">
@@ -44,9 +54,9 @@
                     <button ion-button clear item-end (click)="goToMonument(monument)">Voir</button>
                   </ion-item>
                   <ion-item-options side="right">
-                      <button ion-button color="danger" (click)="deleteCircuit(circuit)">
+                      <button ion-button color="danger" >
                         <ion-icon name="md-trash"></ion-icon>
-                        Supprimer
+                        Retirer
                       </button>
                   </ion-item-options>
                 </ion-item-sliding>
@@ -55,9 +65,7 @@
                     Aucun monument ajouté actuellement
                 </ion-list-header>
 
-                <button ion-button outline round full (click)="tracerCircuit()" >
-                  Tracer mon circuit
-              </button>
+                
                
               </ion-list>
         </ion-item>

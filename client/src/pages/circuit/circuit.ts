@@ -125,6 +125,7 @@ export class Circuit {
 export class CircuitModal {
 
   circuit : any;
+  mode : any;
 
   constructor(private navParams: NavParams,
               public modalCtrl: ModalController,
@@ -136,7 +137,7 @@ export class CircuitModal {
               private httpClient: HttpClient) {
     
       this.circuit = navParams.data.circuit;
-
+      this.mode = "WALKING";
   }
 
   ionViewDidLoad() {
@@ -183,7 +184,8 @@ export class CircuitModal {
   tracerCircuit(){
     let nav = this.app.getRootNav();
     nav.push(CircuitMap, {
-            "circuit" : this.circuit
+            "circuit" : this.circuit,
+            "mode" : this.mode
         });
   }
 }

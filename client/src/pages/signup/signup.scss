@@ -11,6 +11,10 @@ page-signup {
         background-color: color($colors, secondary);   
     } 
 
+    .input{
+        color: color($colors, primary); 
+    }
+
     h5{
         color: color($colors, primary);
     }
@@ -32,6 +36,7 @@ page-signup {
 
     .item{
         margin-bottom: 10px;
+        background-color: color($colors, secondary); 
     }
 
     ion-footer {

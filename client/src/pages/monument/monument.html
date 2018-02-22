@@ -13,16 +13,21 @@
 
 <ion-content class="no-scroll card-background-page" >
   
-  <ion-fab bottom left>
-    <button ion-fab color="secondary" ><ion-icon name="add"></ion-icon></button>
-    <ion-fab-list side="top">
-      <button ion-button full (click)="addMonumentFavorie()" color="secondary">Ajouter ce monument au favorie</button>
-      <button ion-button full (click)="doSelectCircuit()" color="secondary">Ajouter ce monument à un circuit</button>
+  <ion-fab bottom right style="bottom : 70px;">
+    <button ion-fab color="secondary" ><ion-icon name="heart"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-button full (click)="addMonumentFavorie()" color="secondary">Ajouter au favorie</button>
+    </ion-fab-list>
+  </ion-fab>
+  <ion-fab bottom right>
+    <button ion-fab color="secondary" ><ion-icon name="flag"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-button full (click)="doSelectCircuit()" color="secondary">Ajouter à un circuit</button>
     </ion-fab-list>
   </ion-fab>
 
   <ion-card>
-    <img [src]="monument.urlToImage"/>
+    <img [src]="monument.urlToImage" style="max-height : 300px;"/>
     <ion-card-content>
       <ion-card-title>
         {{ monument.name }}

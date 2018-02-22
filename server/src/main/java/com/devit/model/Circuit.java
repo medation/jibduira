@@ -118,6 +118,10 @@ public class Circuit {
 		
 	}
 
+	public void removeMonument(Monument monument){
+		this.monuments.remove(monument);
+	}
+
 	public void removeAllMonument(){
 		this.monuments.removeAll(this.monuments);
 	}

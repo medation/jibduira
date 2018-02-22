@@ -2,7 +2,7 @@
 
   <div class="title">JibDuira</div>
 
-  <div padding>
+  <div>
     
     <p class="error-message" *ngIf="username.errors?.required && username.dirty">
       Vous devez entrer un nom d'utilisateur
@@ -66,9 +66,9 @@
                     placeholder="Prénom"></ion-input>
         </ion-item>
 
-        <div style="margin-top : 20px;">
-          <button ion-button color="primary" full type="submit" [disabled]="!form.valid">S'enregistrer</button>
-        </div>
+        <ion-buttons style="margin-top : 20px;" end>
+            <button ion-button color="primary" round outline type="submit" [disabled]="!form.valid">S'enregistrer</button>
+        </ion-buttons>
 
     </form>
   </div>

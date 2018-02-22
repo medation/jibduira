@@ -79,4 +79,15 @@ public class CircuitControllerRest {
         }
         return circuit;
     }
+    /*
+    @DeleteMapping("/{id}/deleteMonumentFromCircuit")
+    public Circuit deleteMonumentApi(@PathVariable String id, @RequestBody Monument monument){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsernameOrEmail(auth.getName());
+        Circuit circuit = tourismService.findCircuitById(Integer.parseInt(id));
+        circuit.removeMonument(monument);
+        tourismService.saveCircuit(circuit);
+        return circuit;
+    }
+    */
 }

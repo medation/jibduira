@@ -74,7 +74,7 @@ public class MonumentController {
 	}
 	
 	@GetMapping(value="/monument/{id}")
-	public ModelAndView getEditVideo(@PathVariable String id) {
+	public ModelAndView getMonument(@PathVariable String id) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("monument", tourismService.findMonumentById(Integer.parseInt(id)));
 		modelAndView.setViewName("monument");
